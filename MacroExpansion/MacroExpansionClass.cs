@@ -18,9 +18,10 @@ namespace MacroExpansionNS
 
         private static IEnumerable<T> UnsafeMacroExpansion<T>(IEnumerable<T> sequence, IEnumerable<T> newValues, T value){
             foreach (var e in sequence)
-                if (Equals(e, value))
-                    foreach (var v in newValues)
+                if (Equals(e, value)){
+                    foreach (var v in newValues.ToArray())
                         yield return v;
+                }
                 else
                     yield return e;
         }
